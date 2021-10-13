@@ -1,1 +1,1 @@
-# Node.js TS Boilerpalte 😎
+# Node.js TS Boilerplate 😎
