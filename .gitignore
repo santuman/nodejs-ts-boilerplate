@@ -1,4 +1,6 @@
 build/
 node_modules/
-.env-cmdrc.js
 .eslintcache
+.env.prod
+.env.dev
+.env

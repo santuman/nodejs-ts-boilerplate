@@ -2,21 +2,16 @@ import http from 'http'
 
 import keys from './config/keys'
 import expressApplication from './app'
-import envFileChecker from './utils/envFileChecker'
-import { connectMongoDB, disconnectMongoDB } from './database/mongoConnection'
-;(async () => {
+import { disconnectMongoDB } from './loaders/mongoConnection'
+import Logger from './loaders/logger'
+import loader from './loaders'
+
+const startServer = async () => {
 	try {
 		/**
-		 * Environment variables file check
+		 * Loads everything
 		 */
-		envFileChecker()
-
-		/**
-		 * Database Connection
-		 */
-		const mongoURI = `${keys.DB_PROTOCOL}://${keys.DB_USER}:${keys.DB_PASSWORD}@${keys.DB_HOST}:${keys.DB_PORT}/${keys.DB_NAME}?${keys.DB_PARAMS}`
-		await connectMongoDB(mongoURI)
-
+		await loader()
 		/**
 		 * Express Application
 		 */
@@ -27,14 +22,16 @@ import { connectMongoDB, disconnectMongoDB } from './database/mongoConnection'
 		 */
 		const server = http.createServer(app)
 
-		const PORT = keys.PORT
-		server.listen(PORT, () => {
-			console.log(`Server is running on port ${PORT} in ${keys.ENV} mode`)
+		server.listen(keys.PORT, () => {
+			Logger.info(`🛡️  Server listening on port: ${keys.PORT} 🛡️`)
 		})
 	} catch (error) {
-		console.log(error)
+		Logger.error(error)
+		process.exit(1)
 	}
-})()
+}
+
+startServer()
 
 process.on('SIGINT', async () => {
 	await disconnectMongoDB()
