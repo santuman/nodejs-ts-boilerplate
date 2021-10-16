@@ -22,11 +22,11 @@ mongoose.connection.on('disconnected', function (this: mongoose.Connection) {
 	Logger.info(`⚠️ MongoDB :: Disconnected ${this.name}`)
 })
 
-export const connectMongoDB = async (mongoURI: string | undefined): Promise<Mongoose> => {
+export const connectMongoDB = async (mongoURI: string | undefined): Promise<void> => {
 	if (!mongoURI) {
 		throw Error('mongoURI is required')
 	}
-	return await mongoose.connect(mongoURI, {
+	await mongoose.connect(mongoURI, {
 		serverSelectionTimeoutMS: 5000,
 	})
 }

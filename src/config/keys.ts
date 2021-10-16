@@ -13,12 +13,12 @@ const keys = {
 	/**
 	 * Nodejs environment mode.
 	 */
-	ENV: process.env.ENV,
+	ENV: process.env.ENV || 'development',
 
 	/**
 	 * PORT where server listens for any request.
 	 */
-	PORT: process.env.PORT,
+	PORT: process.env.PORT || 3000,
 
 	/**
 	 * MongoDB Connection URI
@@ -36,7 +36,7 @@ const keys = {
 	 * Agenda.js
 	 */
 	AGENDA: {
-		DB_COLLECTION: process.env.AGENDA_DB_COLLECTION,
+		DB_COLLECTION: process.env.AGENDA_DB_COLLECTION || 'agenda-job-collection-db',
 		POOL_TIME: process.env.AGENDA_POOL_TIME, // run every
 		CONCURRENCY: parseInt(process.env.AGENDA_CONCURRENCY || '10', 10), // max number of jobs at a time
 	},
