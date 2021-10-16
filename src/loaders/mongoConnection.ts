@@ -2,7 +2,7 @@ import mongoose from 'mongoose'
 import Logger from './logger'
 
 mongoose.connection.once('connected', function (this: mongoose.Connection) {
-	Logger.info(`👌 MongoDB :: Connection successful HOST:${this.host} DB:${this.name} `)
+	Logger.info(`✌️ MongoDB :: Connection successful HOST:${this.host} DB:${this.name} `)
 	// setTimeout(() => {
 	// 	// eslint-disable-next-line @typescript-eslint/no-var-requires
 	// 	const seed = require('src/utils/dbSeeder')

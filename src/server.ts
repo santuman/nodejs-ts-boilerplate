@@ -12,6 +12,7 @@ const startServer = async () => {
 		 * Loads everything
 		 */
 		await loader()
+
 		/**
 		 * Express Application
 		 */
