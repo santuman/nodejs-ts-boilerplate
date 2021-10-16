@@ -10,7 +10,7 @@ mongoose.connection.once('connected', function (this: mongoose.Connection) {
 	// }, 500)
 })
 mongoose.connection.once('open', function () {
-	Logger.info('🏁 MongoDB :: Connection Ready')
+	Logger.info('🌱 MongoDB :: Connection Ready')
 })
 mongoose.connection.on('error', (error) => {
 	throw error
