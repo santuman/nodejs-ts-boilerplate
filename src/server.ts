@@ -23,7 +23,11 @@ const startServer = async () => {
 		const server = http.createServer(app)
 
 		server.listen(keys.PORT, () => {
-			Logger.info(`🛡️  Server listening on port: ${keys.PORT} 🛡️`)
+			Logger.info(`
+                ################################################
+                🛡️  Server listening on port: ${keys.PORT} 🛡️
+                ################################################
+            `)
 		})
 	} catch (error) {
 		Logger.error(error)
