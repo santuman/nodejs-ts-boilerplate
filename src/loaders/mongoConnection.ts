@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+import mongoose, { Mongoose } from 'mongoose'
 import Logger from './logger'
 
 mongoose.connection.once('connected', function (this: mongoose.Connection) {
@@ -22,11 +22,11 @@ mongoose.connection.on('disconnected', function (this: mongoose.Connection) {
 	Logger.info(`⚠️ MongoDB :: Disconnected ${this.name}`)
 })
 
-export const connectMongoDB = async (mongoURI: string | undefined): Promise<void> => {
+export const connectMongoDB = async (mongoURI: string | undefined): Promise<Mongoose> => {
 	if (!mongoURI) {
 		throw Error('mongoURI is required')
 	}
-	await mongoose.connect(mongoURI, {
+	return await mongoose.connect(mongoURI, {
 		serverSelectionTimeoutMS: 5000,
 	})
 }

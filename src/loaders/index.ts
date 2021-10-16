@@ -5,8 +5,7 @@ const loader = async () => {
 	/**
 	 * Database Connection
 	 */
-	const mongoURI = `${keys.DB_PROTOCOL}://${keys.DB_USER}:${keys.DB_PASSWORD}@${keys.DB_HOST}:${keys.DB_PORT}/${keys.DB_NAME}?${keys.DB_PARAMS}`
-	await connectMongoDB(mongoURI)
+	const mongoConnection = await connectMongoDB(keys.MONGO_URI)
 }
 
 export default loader
