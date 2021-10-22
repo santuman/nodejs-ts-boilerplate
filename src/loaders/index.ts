@@ -11,7 +11,7 @@ const loader = async () => {
 	await connectMongoDB(keys.MONGO_URI)
 
 	// It returns the agenda instance because it's needed in the subsequent loaders
-	const dependencies = dependencyInjectorLoader({
+	dependencyInjectorLoader({
 		mongoURI: keys.MONGO_URI,
 		agendaCollectionName: keys.AGENDA.DB_COLLECTION,
 		models,
