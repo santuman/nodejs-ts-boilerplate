@@ -11,7 +11,7 @@
     "dev": "ts-node-dev --respawn --transpile-only ./src/server.ts",
     "prepare": "husky install",
     "type-check": "tsc --project tsconfig.json --pretty --noEmit",
-    "lint": "eslint -c .eslintrc.json --ext js,ts --fix"
+    "lint": "eslint -c .eslintrc.json --ext js,ts --fix --cache"
   },
   "repository": {
     "type": "git",
