@@ -6,7 +6,6 @@ Node.js TS Boilerplate is a complete boilerplate for building nodejs backend.
 
 All configuration related to the development container is in the `.devcontainer` directory.
 
-
 - `devcontainer.json`: Configuration settings for the development container
 - `Dockerfile`: Docker container definition for the development container
 
@@ -20,15 +19,16 @@ All configuration related to the development container is in the `.devcontainer`
 
 2. Clone this repository
 
-    #### Clone with HTTPS
+#### Clone with HTTPS
 
         ```BASH
-        git clone https://github.com/SantoshCode/nodejs-ts-boilerplate.git
+            git clone https://github.com/SantoshCode/nodejs-ts-boilerplate.git
         ```
 
     or,
 
     #### Clone with SSH
+
         ```BASH
         git clone git@github.com:SantoshCode/nodejs-ts-boilerplate.git
         ```
@@ -53,7 +53,6 @@ All configuration related to the development container is in the `.devcontainer`
     > **NOTE:** The container will build on your machine. The first build may take several minutes; the `Reopen in Container` command will be much faster after the initial container build, and VS Code will prompt you if the container needs to be rebuilt when the `Dockerfile` or container configuration settings have changed.
 
     When logged into the devcontainer's terminal, the working directory changes to `vscode@missionlz-dev:/workspaces/missionlz$`
-
 
 ### Authenticating to GitHub inside vscode devcontainer
 
