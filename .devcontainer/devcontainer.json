@@ -33,7 +33,8 @@
 	// Add the IDs of extensions you want installed when the container is created.
 	"extensions": [
         "dbaeumer.vscode-eslint",
-        "esbenp.prettier-vscode"
+        "esbenp.prettier-vscode",
+        "ms-vscode-remote.remote-containers"
     ],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
