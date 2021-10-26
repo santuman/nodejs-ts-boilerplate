@@ -36,9 +36,7 @@ All configuration related to the development container is in the `.devcontainer`
     code .
     ```
 
-4. Install the recommended VS Code extensions found in `missionlz/.vscode/extensions.json` file. Including the "Remote Development" extension from Microsoft.
-
-   > **NOTE:** When VS Code is correctly started from the MissionLZ project root directory, you should see folders named `.devcontainer`, `.vscode`, and `src` at the root of the VS Code Explorer pane. In the startup process, VS Code reads the file `.vscode/extensions.json` (relative from the current working directory) and may prompt the user to install any extensions referenced here that are not already installed.
+4. Install the recommended VS Code extensions found in `devcontainer.json` file. Including the "Remote Development" extension from Microsoft.
 
 5. In the VS Code command palette `(Ctrl + Shift + P)` or `(Cmd + Shift + P)` for macOS, run this command:
 
@@ -48,9 +46,40 @@ All configuration related to the development container is in the `.devcontainer`
 
     > **NOTE:** The container will build on your machine. The first build may take several minutes; the `Reopen in Container` command will be much faster after the initial container build, and VS Code will prompt you if the container needs to be rebuilt when the `Dockerfile` or container configuration settings have changed.
 
-    When logged into the devcontainer's terminal, the working directory changes to `vscode@missionlz-dev:/workspaces/missionlz$`
+    When logged into the devcontainer's terminal, the working directory changes to `vscode@missionlz-dev:/workspaces/nodejs-ts-boilerplate`
+
+6. Now run application in terminal (inside devcontainer)
+
+    > **NOTE:** This command will run mongodb service on port `27020` and our application will run on port `3000`.
+
+    ```BASH
+    npm run dev
+    ```
+
+7. Run mongodb service in Compass <https://www.mongodb.com/products/compass>
+
+    Connect to `mongodb://localhost:27020` from Mongodb Compass
+
+8. Application will run on port `3000`.
+
+### Custom Environment variables
+
+You can change environment variables according to your needs from `.devcontainer/docker-compose.yml` file.
+
+```YAML
+environment:
+    - PORT=3000
+    - ENV=development
+    - MONGO_URI=mongodb://db:27017/dev-nodejs-ts-boilerplate
+    - AGENDA_DB_COLLECTION=test-db-name-agenda-job-collection
+    - AGENDA_POOL_TIME=one minute
+    - AGENDA_CONCURRENCY=20
+    - WINSTON_LOG_LEVEL=debug
+```
 
 ### Authenticating to GitHub inside vscode devcontainer
+
+By doing this you can perform any github actions with your git credentials.
 
 > **NOTE:** Below commands is suppose to execute inside terminal of vscode devcontainer. You need to perform every setup show by command `gh auth login`. Also use SSH protocol.
 
