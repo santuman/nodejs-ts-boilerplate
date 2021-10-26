@@ -1,13 +1,13 @@
-import dotenv from 'dotenv'
-import path from 'path'
+// import dotenv from 'dotenv'
+// import path from 'path'
 
-const envFound = dotenv.config({
-	path: path.join(path.resolve(), '.env'),
-})
+// const envFound = dotenv.config({
+// 	path: path.join(path.resolve(), '.env'),
+// })
 
-if (envFound.error) {
-	throw new Error("⚠️ Couldn't find .env file ⚠️")
-}
+// if (envFound.error) {
+// 	throw new Error("⚠️ Couldn't find .env file ⚠️")
+// }
 
 const keys = {
 	/**
@@ -23,7 +23,7 @@ const keys = {
 	/**
 	 * MongoDB Connection URI
 	 */
-	MONGO_URI: `${process.env.DB_PROTOCOL}://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}?${process.env.DB_PARAMS}`,
+	MONGO_URI: process.env.MONGO_URI || '',
 
 	/**
 	 * API configs

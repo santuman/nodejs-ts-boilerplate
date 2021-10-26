@@ -1,0 +1,39 @@
+version: '3.8'
+services:
+  nodejs-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: development-node-api
+    environment:
+      - PORT=3000
+      - ENV=development
+      - MONGO_URI=mongodb://db:27017/dev-nodejs-ts-boilerplate
+      - AGENDA_DB_COLLECTION=test-db-name-agenda-job-collection
+      - AGENDA_POOL_TIME=one minute
+      - AGENDA_CONCURRENCY=20
+      - WINSTON_LOG_LEVEL=debug
+    ports:
+      - 3000:3000
+    depends_on:
+      - db
+    init: true
+
+    volumes:
+      - ../:/workspace:cached
+
+    # Overrides default command so things don't shut down after the process ends.
+    command: /bin/sh -c "while sleep 1000; do :; done"
+
+
+  db:
+    image: mongo:4.4.6
+    restart: unless-stopped
+    container_name: db
+    ports:
+      - 27020:27017
+    volumes:
+      - db:/data/db
+
+volumes:
+  db:

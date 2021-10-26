@@ -8,6 +8,7 @@ const loader = async () => {
 	/**
 	 * Database Connection
 	 */
+	console.log({ mongo: keys.MONGO_URI })
 	await connectMongoDB(keys.MONGO_URI)
 
 	// It returns the agenda instance because it's needed in the subsequent loaders

@@ -1,0 +1,25 @@
+version: '3.8'
+services:
+  nodejs-server:
+    build:
+      context: .
+    container_name: node-api
+    env_file: .env
+    environment:
+      - PORT=$PORT
+      - ENV=$ENV
+      - MONGO_URI=$MONGO_URI
+      - AGENDA_DB_COLLECTION=$AGENDA_DB_COLLECTION
+      - AGENDA_POOL_TIME=$AGENDA_POOL_TIME
+      - AGENDA_CONCURRENCY=$AGENDA_CONCURRENCY
+      - WINSTON_LOG_LEVEL=$WINSTON_LOG_LEVEL
+    ports:
+      - $PORT:$PORT
+    # links:
+    #   - db
+  # db:
+  #   image: mongo:3
+  #   environment:
+  #     - MONGO_INITDB_ROOT_USERNAME=$DB_USER
+  #     - MONGO_INITDB_ROOT_PASSWORD=$DB_PASSWORD
+  #     - MONGO_INITDB_DATABASE=$DB_NAME
