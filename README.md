@@ -19,19 +19,15 @@ All configuration related to the development container is in the `.devcontainer`
 
 2. Clone this repository
 
-#### Clone with HTTPS
-
-        ```BASH
-            git clone https://github.com/SantoshCode/nodejs-ts-boilerplate.git
-        ```
+    ```BASH
+    git clone https://github.com/SantoshCode/nodejs-ts-boilerplate.git
+    ```
 
     or,
 
-    #### Clone with SSH
-
-        ```BASH
-        git clone git@github.com:SantoshCode/nodejs-ts-boilerplate.git
-        ```
+    ```BASH
+    git clone git@github.com:SantoshCode/nodejs-ts-boilerplate.git
+    ```
 
 3. Change to the cloned folder
 
