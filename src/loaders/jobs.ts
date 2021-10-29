@@ -13,7 +13,8 @@ export default async ({ agenda }: { agenda: Agenda }) => {
 	)
 	await agenda.start()
 	// await agenda.every('0 22 * * 0', 'send-report-email') // At 10:00 PM, only on Sunday https://crontab.cronhub.io/
-	await agenda.every('*/1 * * * *', 'send-report-email', {
+	// await agenda.every('*/1 * * * *', 'send-report-email', { // Every minute
+	await agenda.every('0 22 * * 0', 'send-report-email', {
 		email: keys.EMAIL.ADMIN_EMAIL_ADDRESS,
 	}) // At 10:00 PM, only on Sunday https://crontab.cronhub.io/
 }
