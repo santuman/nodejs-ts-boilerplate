@@ -47,5 +47,22 @@ const keys = {
 	LOGS: {
 		LEVEL: process.env.WINSTON_LOG_LEVEL || 'silly',
 	},
+
+	/**
+	 * Nodemailer host credentials
+	 */
+	EMAIL: {
+		FROM: process.env.EMAIL_FROM,
+		REPLY_TO: process.env.EMAIL_REPLY_TO,
+		ADMIN_EMAIL_ADDRESS: process.env.EMAIL_ADMIN_EMAIL_ADDRESS,
+	},
+
+	/**
+	 * AWS SES credentials
+	 */
+	AWS: {
+		AWS_ACCESS_KEY_ID: process.env.AWS_ACCESS_KEY_ID,
+		AWS_SECRET_ACCESS_KEY: process.env.AWS_SECRET_ACCESS_KEY,
+	},
 }
 export default keys

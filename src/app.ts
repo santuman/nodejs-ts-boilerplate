@@ -1,3 +1,4 @@
+import 'reflect-metadata'
 import express, { Request, Response } from 'express'
 
 const expressApplication = (): Express.Application => {

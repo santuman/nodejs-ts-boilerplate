@@ -13,6 +13,12 @@ services:
       - AGENDA_POOL_TIME=one minute
       - AGENDA_CONCURRENCY=20
       - WINSTON_LOG_LEVEL=debug
+      - EMAIL_FROM=from@gmail.com
+      - EMAIL_REPLY_TO=noreply@org.com
+      - EMAIL_ADMIN_EMAIL_ADDRESS=admin@gmail.com
+      - AWS_ACCESS_KEY_ID=
+      - AWS_SECRET_ACCESS_KEY=
+
     ports:
       - 3000:3000
     depends_on:
