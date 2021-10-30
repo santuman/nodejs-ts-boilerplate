@@ -36,6 +36,7 @@
     "@aws-sdk/client-ses": "^3.39.0",
     "agenda": "^4.2.1",
     "express": "^4.17.1",
+    "joi": "^17.4.2",
     "mongoose": "^6.0.10",
     "nodemailer": "^6.7.0",
     "reflect-metadata": "^0.1.13",
