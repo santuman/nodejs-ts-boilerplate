@@ -36,7 +36,6 @@
     "@aws-sdk/client-ses": "^3.39.0",
     "agenda": "^4.2.1",
     "argon2": "^0.28.2",
-    "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "joi": "^17.4.2",
     "jsonwebtoken": "^8.5.1",
