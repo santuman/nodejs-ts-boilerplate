@@ -52,7 +52,8 @@ export default class AuthService {
 	private generateToken(user: IUser) {
 		const today = new Date()
 		const exp = new Date(today)
-		exp.setDate(today.getDate() + 60) // expires in 60 days
+		// exp.setDate(today.getDate() + 60) // expires in 60 days
+		exp.setMinutes(today.getMinutes() + +keys.JWT.JWT_TOKEN_EXPIRY_IN_MINUTES)
 
 		this.logger.silly(`Sign JWT for userId: ${user._id}`)
 		return jwt.sign(
@@ -62,7 +63,7 @@ export default class AuthService {
 				username: user.userName,
 				exp: exp.getTime() / 1000,
 			},
-			keys.JWT.SECRET
+			keys.JWT.JWT_SECRET
 		)
 	}
 }

@@ -7,7 +7,7 @@ export default async ({ agenda }: { agenda: Agenda }) => {
 		'send-report-email',
 		{
 			priority: 20,
-			concurrency: keys.AGENDA.CONCURRENCY,
+			concurrency: keys.AGENDA.AGENDA_CONCURRENCY,
 		},
 		new EmailSequenceJob().handler
 	)
@@ -15,6 +15,6 @@ export default async ({ agenda }: { agenda: Agenda }) => {
 	// await agenda.every('0 22 * * 0', 'send-report-email') // At 10:00 PM, only on Sunday https://crontab.cronhub.io/
 	// await agenda.every('*/1 * * * *', 'send-report-email', { // Every minute
 	await agenda.every('0 22 * * 0', 'send-report-email', {
-		email: keys.EMAIL.ADMIN_EMAIL_ADDRESS,
+		email: keys.EMAIL.EMAIL_ADMIN_EMAIL_ADDRESS,
 	}) // At 10:00 PM, only on Sunday https://crontab.cronhub.io/
 }

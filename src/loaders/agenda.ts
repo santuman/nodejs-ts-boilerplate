@@ -10,8 +10,8 @@ interface AgendaFactoryParams {
 const agendaFactory = ({ mongoURI, collectionName }: AgendaFactoryParams) => {
 	return new Agenda({
 		db: { address: mongoURI, collection: collectionName },
-		processEvery: keys.AGENDA.POOL_TIME,
-		maxConcurrency: keys.AGENDA.CONCURRENCY,
+		processEvery: keys.AGENDA.AGENDA_POOL_TIME,
+		maxConcurrency: keys.AGENDA.AGENDA_CONCURRENCY,
 	})
 }
 

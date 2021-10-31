@@ -1,4 +1,4 @@
-import 'reflect-metadata'
+import 'reflect-metadata' // We need this in order to use @Decorators
 import http from 'http'
 
 import keys from './config/keys'

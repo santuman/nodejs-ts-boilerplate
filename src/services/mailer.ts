@@ -12,8 +12,8 @@ export default class NodeMailerService {
 
 	public async SendWelcomeEmail(email: string) {
 		const data = {
-			from: keys.EMAIL.FROM,
-			replyTo: keys.EMAIL.REPLY_TO,
+			from: keys.EMAIL.EMAIL_FROM,
+			replyTo: keys.EMAIL.EMAIL_REPLY_TO,
 			to: email,
 			subject: 'Hello',
 			text: 'Testing from nodejs boilerplate',
@@ -30,8 +30,8 @@ export default class NodeMailerService {
 
 	public async SendReportEmail(email: string) {
 		const data = {
-			from: `"SERVER REPORT" ${keys.EMAIL.FROM}`,
-			replyTo: keys.EMAIL.REPLY_TO,
+			from: `"SERVER REPORT" ${keys.EMAIL.EMAIL_FROM}`,
+			replyTo: keys.EMAIL.EMAIL_REPLY_TO,
 			to: email,
 			subject: 'Weekly Report',
 			text: 'This is your weekly report admin',

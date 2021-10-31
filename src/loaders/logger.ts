@@ -14,7 +14,7 @@ if (keys.ENV === 'development') {
 }
 
 const LoggerInstance = winston.createLogger({
-	level: keys.LOGS.LEVEL,
+	level: keys.LOGS.WINSTON_LOG_LEVEL,
 	levels: winston.config.npm.levels,
 	format: winston.format.combine(
 		winston.format.timestamp({

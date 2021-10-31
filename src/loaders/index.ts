@@ -14,7 +14,7 @@ const loader = async () => {
 	// It returns the agenda instance because it's needed in the subsequent loaders
 	const { agenda } = dependencyInjectorLoader({
 		mongoURI: keys.MONGO_URI,
-		agendaCollectionName: keys.AGENDA.DB_COLLECTION,
+		agendaCollectionName: keys.AGENDA.AGENDA_DB_COLLECTION,
 		models,
 	})
 	LoggerInstance.info('✌️ Dependency Injector loaded')
