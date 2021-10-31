@@ -27,4 +27,6 @@ const LoggerInstance = winston.createLogger({
 	transports,
 })
 
+export type LoggerInstanceType = typeof LoggerInstance
+
 export default LoggerInstance

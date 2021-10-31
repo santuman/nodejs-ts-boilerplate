@@ -1,3 +1,4 @@
+import 'reflect-metadata'
 import http from 'http'
 
 import keys from './config/keys'

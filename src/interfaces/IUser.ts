@@ -1,10 +1,16 @@
 export interface IUser {
 	_id: string
-	name: string
+	userName: string
+	firstName: string
+	lastName: string
 	email: string
+	role: string
 }
 
 export interface IUserInputDTO {
-	name: string
+	userName: string
+	firstName: string
+	lastName: string
 	email: string
+	password: string
 }

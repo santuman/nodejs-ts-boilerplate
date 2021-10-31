@@ -43,4 +43,5 @@ RUN git clone https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/t
 RUN cd $HOME && curl -fsSLO https://raw.githubusercontent.com/romkatv/dotfiles-public/master/.purepower
 
 # zsh configuration
-ADD .zshrc $HOME
+# ADD .zshrc $HOME
+COPY .zshrc /home/node/.zshrc

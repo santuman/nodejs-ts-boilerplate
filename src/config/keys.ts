@@ -1,13 +1,13 @@
-// import dotenv from 'dotenv'
-// import path from 'path'
+import dotenv from 'dotenv'
+import path from 'path'
 
-// const envFound = dotenv.config({
-// 	path: path.join(path.resolve(), '.env'),
-// })
+const envFound = dotenv.config({
+	path: path.join(path.resolve(), '.env'),
+})
 
-// if (envFound.error) {
-// 	throw new Error("⚠️ Couldn't find .env file ⚠️")
-// }
+if (envFound.error) {
+	throw new Error("⚠️ Couldn't find .env file ⚠️")
+}
 
 const keys = {
 	/**
@@ -63,6 +63,13 @@ const keys = {
 	AWS: {
 		AWS_ACCESS_KEY_ID: process.env.AWS_ACCESS_KEY_ID,
 		AWS_SECRET_ACCESS_KEY: process.env.AWS_SECRET_ACCESS_KEY,
+	},
+
+	/**
+	 * JWT secrets
+	 */
+	JWT: {
+		SECRET: process.env.JWT_SECRET || '',
 	},
 }
 export default keys

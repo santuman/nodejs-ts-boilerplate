@@ -30,35 +30,30 @@ const ses = new SESClient({
 })
 
 const dependencyInjectorLoader = ({ mongoURI, agendaCollectionName, models }: DependencyInjectorLoaderParams) => {
-	try {
-		/**
-		 * Injecting models
-		 */
-		models.forEach((model) => {
-			Container.set(model.name, model.model)
+	/**
+	 * Injecting models
+	 */
+	models.forEach((model) => {
+		Container.set(model.name, model.model)
+	})
+
+	const agendaInstance = agendaFactory({ mongoURI, collectionName: agendaCollectionName })
+
+	Container.set('agendaInstance', agendaInstance)
+	LoggerInstance.info('✌️ Agenda injected into container')
+
+	Container.set('logger', LoggerInstance)
+	LoggerInstance.info('✌️ Logger injected into container')
+
+	Container.set(
+		'emailClient',
+		nodemailer.createTransport({
+			SES: { ses, aws: { SendRawEmailCommand } },
 		})
+	)
+	LoggerInstance.info('✌️ EmailClient injected into container')
 
-		const agendaInstance = agendaFactory({ mongoURI, collectionName: agendaCollectionName })
-
-		Container.set('agendaInstance', agendaInstance)
-		LoggerInstance.info('✌️ Agenda injected into container')
-
-		Container.set('logger', LoggerInstance)
-		LoggerInstance.info('✌️ Logger injected into container')
-
-		Container.set(
-			'emailClient',
-			nodemailer.createTransport({
-				SES: { ses, aws: { SendRawEmailCommand } },
-			})
-		)
-		LoggerInstance.info('✌️ EmailClient injected into container')
-
-		return { agenda: agendaInstance }
-	} catch (error) {
-		LoggerInstance.error('🔥 Error on dependency injector loader: %o', error) // string interpolation splat()
-		throw error
-	}
+	return { agenda: agendaInstance }
 }
 
 export default dependencyInjectorLoader

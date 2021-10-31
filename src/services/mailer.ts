@@ -5,9 +5,9 @@ import keys from '../config/keys'
 
 @Service()
 export default class NodeMailerService {
-	emailClient: Transporter<SESTransport.SentMessageInfo>
-	constructor(@Inject('emailClient') emailClient: Transporter<SESTransport.SentMessageInfo>) {
-		this.emailClient = emailClient
+	// emailClient: Transporter<SESTransport.SentMessageInfo>
+	constructor(@Inject('emailClient') private emailClient: Transporter<SESTransport.SentMessageInfo>) {
+		// this.emailClient = emailClient
 	}
 
 	public async SendWelcomeEmail(email: string) {
