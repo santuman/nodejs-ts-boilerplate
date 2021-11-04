@@ -5,22 +5,26 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: development-node-api
+    env_file: .env
     environment:
-      - PORT=3000
-      - ENV=development
-      - MONGO_URI=mongodb://db:27017/dev-nodejs-ts-boilerplate
-      - AGENDA_DB_COLLECTION=test-db-name-agenda-job-collection
-      - AGENDA_POOL_TIME=one minute
-      - AGENDA_CONCURRENCY=20
-      - WINSTON_LOG_LEVEL=debug
-      - EMAIL_FROM=from@gmail.com
-      - EMAIL_REPLY_TO=noreply@org.com
-      - EMAIL_ADMIN_EMAIL_ADDRESS=admin@gmail.com
-      - AWS_ACCESS_KEY_ID=
-      - AWS_SECRET_ACCESS_KEY=
-
+      - PORT=$PORT
+      - ENV=$ENV
+      - MONGO_URI=$MONGO_URI
+      - AGENDA_DB_COLLECTION=$AGENDA_DB_COLLECTION
+      - AGENDA_POOL_TIME=$AGENDA_POOL_TIME
+      - AGENDA_CONCURRENCY=$AGENDA_CONCURRENCY
+      - WINSTON_LOG_LEVEL=$WINSTON_LOG_LEVEL
+      - AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
+      - AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
+      - EMAIL_FROM=$EMAIL_FROM
+      - EMAIL_REPLY_TO=$EMAIL_REPLY_TO
+      - EMAIL_ADMIN_EMAIL_ADDRESS=$EMAIL_ADMIN_EMAIL_ADDRESS
+      - JWT_SECRET_ACCESS_TOKEN=$JWT_SECRET_ACCESS_TOKEN
+      - JWT_ACCESS_TOKEN_EXPIRY_IN_MINUTES=$JWT_ACCESS_TOKEN_EXPIRY_IN_MINUTES
+      - JWT_SECRET_REFRESH_TOKEN=$JWT_SECRET_REFRESH_TOKEN
+      - JWT_REFRESH_TOKEN_EXPIRY_IN_MINUTES=$JWT_REFRESH_TOKEN_EXPIRY_IN_MINUTES
     ports:
-      - 3000:3000
+      - $PORT:$PORT
     depends_on:
       - db
     init: true

@@ -36,6 +36,7 @@
     "@aws-sdk/client-ses": "^3.39.0",
     "agenda": "^4.2.1",
     "argon2": "^0.28.2",
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "joi": "^17.4.2",
     "jsonwebtoken": "^8.5.1",
@@ -43,13 +44,14 @@
     "nodemailer": "^6.7.0",
     "reflect-metadata": "^0.1.13",
     "typedi": "^0.10.0",
+    "uuid": "^8.3.2",
     "winston": "^3.3.3"
   },
   "devDependencies": {
     "@types/express": "^4.17.13",
     "@types/jsonwebtoken": "^8.5.5",
-    "@types/mongodb": "^4.0.7",
     "@types/nodemailer": "^6.4.4",
+    "@types/uuid": "^8.3.1",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
     "eslint": "^8.0.0",

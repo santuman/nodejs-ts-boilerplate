@@ -4,7 +4,17 @@ export interface IUser {
 	firstName: string
 	lastName: string
 	email: string
+	emailConfirmed: boolean
+	emailToken: string
 	role: string
+	security: {
+		tokens: Array<{ refreshToken: string; createdAt: Date }>
+		passwordReset: {
+			token: string
+			provisionalPassword: string
+			expiry: Date
+		}
+	}
 }
 
 export interface IUserInputDTO {

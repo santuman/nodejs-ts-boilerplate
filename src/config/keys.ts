@@ -1,7 +1,7 @@
+import { isEmpty } from '../helpers/isEmpty'
+
 // import dotenv from 'dotenv'
 // import path from 'path'
-
-import { isEmpty } from '../helpers/isEmpty'
 
 // const envFound = dotenv.config({
 // 	path: path.join(path.resolve(), '.env'),
@@ -71,9 +71,19 @@ const keys = {
 	 * JWT secrets
 	 */
 	JWT: {
-		JWT_SECRET: process.env.JWT_SECRET || '',
-		JWT_TOKEN_EXPIRY_IN_MINUTES: process.env.JWT_TOKEN_EXPIRY_IN_MINUTES || '',
+		// ACCESS TOKEN KEYS
+		JWT_SECRET_ACCESS_TOKEN: process.env.JWT_SECRET_ACCESS_TOKEN || '',
+		JWT_ACCESS_TOKEN_EXPIRY_IN_MINUTES: process.env.JWT_ACCESS_TOKEN_EXPIRY_IN_MINUTES || '',
+
+		// REFRESH TOKEN KEYS
+		JWT_SECRET_REFRESH_TOKEN: process.env.JWT_SECRET_REFRESH_TOKEN || '',
+		JWT_REFRESH_TOKEN_EXPIRY_IN_MINUTES: process.env.JWT_REFRESH_TOKEN_EXPIRY_IN_MINUTES || '',
 	},
+
+	/**
+	 * Frontend URL
+	 */
+	FRONTEND_URL: process.env.FRONTEND_URL || '',
 }
 
 // Check if every environment variables are fullfilled

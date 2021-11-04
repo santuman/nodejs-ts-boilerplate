@@ -1,4 +1,4 @@
-FROM node:14.18.1-slim
+FROM node:16.13.0-slim
 
 LABEL maintainer="santsubcode@gmail.com"
 
@@ -7,7 +7,6 @@ RUN apt-get update && apt-get install -y \
   curl \
   git-core \
   gnupg \
-  linuxbrew-wrapper \
   locales \
   zsh \
   wget \
@@ -25,7 +24,7 @@ RUN apt-get update && \
     gh
 
 # Setting up eslint prettier and typescript
-RUN npm install --global eslint prettier typescript
+RUN npm install --global eslint prettier typescript node-gyp
 
 USER node
 

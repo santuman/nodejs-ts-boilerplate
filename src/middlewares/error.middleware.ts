@@ -1,11 +1,11 @@
 import { Request, Response, NextFunction } from 'express'
 import { Error as MongooseError } from 'mongoose'
-import { MongoError } from 'mongodb'
+import { MongoServerError } from 'mongodb'
 import keys from '../config/keys'
 import LoggerInstance from '../loaders/logger'
 import ErrorResponse from '../utils/errorResponse'
 
-type CustomErrorTypes = ErrorResponse | MongoError | MongooseError.CastError | MongooseError.ValidationError
+type CustomErrorTypes = ErrorResponse | MongooseError.CastError | MongooseError.ValidationError
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const errorHandler = (err: CustomErrorTypes, _req: Request, res: Response, _next: NextFunction) => {
@@ -19,15 +19,27 @@ const errorHandler = (err: CustomErrorTypes, _req: Request, res: Response, _next
 		LoggerInstance.error('Error Middleware Stack: %o', err.stack)
 	}
 
+	if (err.name === 'JsonWebTokenError') {
+		const message = 'Bad Token'
+		error = new ErrorResponse([message], 401)
+	}
+
 	// Mongoose bad ObjectId
-	if (err instanceof MongooseError.CastError) {
+	if (err.name === 'CastError') {
 		const message = 'Resource not found'
 		error = new ErrorResponse([message], 404)
 	}
 
 	// Mongoose duplicate key MongoError
-	if ((err as unknown as MongoError).code === 11000) {
-		const message = 'Duplicate field value entered'
+	if ((err as unknown as MongoServerError).code === 11000) {
+		let message = 'Duplicate field value entered'
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		if ((err as any).keyPattern.userName === 1) {
+			message = 'User name is already taken'
+			// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		} else if ((err as any).keyPattern.email === 1) {
+			message = 'Email is already taken'
+		}
 		error = new ErrorResponse([message], 400)
 	}
 

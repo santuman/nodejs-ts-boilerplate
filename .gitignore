@@ -5,3 +5,4 @@ node_modules/
 .env.dev
 .env
 .vscode/settings.json
+.devcontainer/docker-compose.yml
