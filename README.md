@@ -64,23 +64,42 @@ All configuration related to the development container is in the `.devcontainer`
 
 ### Custom Environment variables
 
-You can change environment variables according to your needs from `.devcontainer/docker-compose.yml` file.
+You can change environment variables according to your needs from `.devcontainer/.env` file. You can use .env.example as reference
 
-```YAML
-environment:
-      - PORT=3000
-      - ENV=development
-      - MONGO_URI=mongodb://db:27017/dev-nodejs-ts-boilerplate
-      - AGENDA_DB_COLLECTION=test-db-name-agenda-job-collection
-      - AGENDA_POOL_TIME=one minute
-      - AGENDA_CONCURRENCY=20
-      - WINSTON_LOG_LEVEL=debug
-      - EMAIL_FROM=emailfrom@gmail.com
-      - EMAIL_REPLY_TO=noreply@org.com
-      - EMAIL_ADMIN_EMAIL_ADDRESS=santsub9484@gmail.com
-      - AWS_ACCESS_KEY_ID=
-      - AWS_SECRET_ACCESS_KEY=
+```bash
+# DEVELOPMENT/APPLICATION
+PORT=3000
+ENV=development
 
+# MONGODB
+MONGO_URI=mongodb://db:27017/dev-nodejs-ts-boilerplate
+
+# AGENDA
+AGENDA_DB_COLLECTION=test-db-name-agenda-job-collection
+AGENDA_POOL_TIME=one minute
+AGENDA_CONCURRENCY=20
+
+# WINSTON
+WINSTON_LOG_LEVEL=debug
+
+# AWS SES
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
+
+# EMAIL
+EMAIL_FROM=company@gmail.com
+EMAIL_REPLY_TO=noreply@org.com
+EMAIL_ADMIN_EMAIL_ADDRESS=adminemail@gmail.com
+
+# JWT
+JWT_SECRET_ACCESS_TOKEN=asdasdoiuo
+JWT_ACCESS_TOKEN_EXPIRY_IN_MINUTES=15
+
+JWT_SECRET_REFRESH_TOKEN=0asdasdkj9ad
+JWT_REFRESH_TOKEN_EXPIRY_IN_MINUTES=10080
+
+# FRONTEND URL
+FRONTEND_URL=http://localhost:9000
 ```
 
 **IMP:** `AWS_ACCESS_KEY_ID` & `AWS_SECRET_ACCESS_KEY` is not Amazon aws SES SMTP credentials. You can get these keys by creating separate IAM User and generate them from `My Security Credentials` tab.
