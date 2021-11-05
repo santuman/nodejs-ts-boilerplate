@@ -25,7 +25,7 @@ const keys = {
 	/**
 	 * MongoDB Connection URI
 	 */
-	MONGO_URI: process.env.MONGO_URI || '',
+	MONGO_URI: process.env.MONGO_URI || 'mongodb://db:27017/dev-nodejs-ts-boilerplate',
 
 	/**
 	 * API configs
@@ -39,7 +39,7 @@ const keys = {
 	 */
 	AGENDA: {
 		AGENDA_DB_COLLECTION: process.env.AGENDA_DB_COLLECTION || 'agenda-job-collection-db',
-		AGENDA_POOL_TIME: process.env.AGENDA_POOL_TIME || '', // run every
+		AGENDA_POOL_TIME: process.env.AGENDA_POOL_TIME || 'one minute', // run every
 		AGENDA_CONCURRENCY: parseInt(process.env.AGENDA_CONCURRENCY || '10', 10), // max number of jobs at a time
 	},
 
@@ -54,9 +54,9 @@ const keys = {
 	 * Nodemailer host credentials
 	 */
 	EMAIL: {
-		EMAIL_FROM: process.env.EMAIL_FROM || '',
-		EMAIL_REPLY_TO: process.env.EMAIL_REPLY_TO || '',
-		EMAIL_ADMIN_EMAIL_ADDRESS: process.env.EMAIL_ADMIN_EMAIL_ADDRESS || '',
+		EMAIL_FROM: process.env.EMAIL_FROM || 'abc@gmail.com',
+		EMAIL_REPLY_TO: process.env.EMAIL_REPLY_TO || 'noreply@org.com',
+		EMAIL_ADMIN_EMAIL_ADDRESS: process.env.EMAIL_ADMIN_EMAIL_ADDRESS || 'adminmail@gmail.com',
 	},
 
 	/**
