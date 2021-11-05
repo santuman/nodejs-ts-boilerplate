@@ -24,7 +24,7 @@ const validateTokenEndpointBody = (req: Request, _res: Response, next: NextFunct
 	}
 
 	// on success replace req.body with validated value and trigger next middleware function
-	req.body = value
+	req.body = { ...req.body, ...value }
 	return next()
 }
 

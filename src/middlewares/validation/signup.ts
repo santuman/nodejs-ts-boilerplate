@@ -61,7 +61,7 @@ const validateSignUpEndpointBody = (req: Request, _res: Response, next: NextFunc
 	}
 
 	// on success replace req.body with validated value and trigger next middleware function
-	req.body = value
+	req.body = { ...req.body, ...value }
 	return next()
 }
 

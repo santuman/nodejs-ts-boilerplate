@@ -3,12 +3,6 @@ import Joi from 'joi'
 import ErrorResponse from '../../utils/errorResponse'
 
 const validateConfirmEmailTokenEndpointBody = (req: Request, _res: Response, next: NextFunction) => {
-	// Check if proper headers are set or not
-	const accessToken = req.headers.authorization?.split(' ')[1]
-	if (!accessToken) {
-		throw new ErrorResponse(['Bad Request'], 401)
-	}
-
 	// Create schema object
 	const schema = Joi.object({
 		emailToken: Joi.string().required().messages({
@@ -33,8 +27,7 @@ const validateConfirmEmailTokenEndpointBody = (req: Request, _res: Response, nex
 	}
 
 	// on success replace req.body with validated value and trigger next middleware function
-	req.body = value
-	req.body.accessToken = accessToken
+	req.body = { ...req.body, ...value }
 	return next()
 }
 
