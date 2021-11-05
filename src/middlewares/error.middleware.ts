@@ -9,8 +9,6 @@ type CustomErrorTypes = ErrorResponse | MongooseError.CastError | MongooseError.
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const errorHandler = (err: CustomErrorTypes, _req: Request, res: Response, _next: NextFunction) => {
-	console.log('Below is error')
-	console.log(err)
 	let error = { ...err } as ErrorResponse
 	error.messages = (err as ErrorResponse).messages
 
@@ -48,8 +46,6 @@ const errorHandler = (err: CustomErrorTypes, _req: Request, res: Response, _next
 		const messages = Object.values((err as MongooseError.ValidationError).errors).map((val) => val.message)
 		error = new ErrorResponse(messages, 400)
 	}
-
-	console.log('error', error)
 
 	res.status(error.statusCode || 500).json({
 		success: false,

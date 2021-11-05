@@ -3,7 +3,6 @@ import Joi from 'joi'
 import ErrorResponse from '../../utils/errorResponse'
 
 const validateSignUp = (req: Request, _res: Response, next: NextFunction) => {
-	console.log('validating')
 	// Create schema object
 	// https://github.com/sideway/joi/blob/v17.4.0/API.md#list-of-errors
 	// https://dev.to/olufemi/validation-joi-brings-you-joy-fof
@@ -53,7 +52,6 @@ const validateSignUp = (req: Request, _res: Response, next: NextFunction) => {
 	}
 
 	// Validate request body against schema
-	console.log('req.body', req.body)
 	const { error, value } = schema.validate(req.body, options)
 
 	// on fail transfer error messages to error Handler

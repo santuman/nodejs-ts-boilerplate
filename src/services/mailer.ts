@@ -58,10 +58,8 @@ export default class NodeMailerService {
 
 		try {
 			await this.emailClient.sendMail(data)
-			console.log('Email sent')
 			return { delivered: 1, status: 'ok' }
 		} catch (error) {
-			console.log(error)
 			return { delivered: 0, status: 'error' }
 		}
 	}

@@ -35,7 +35,6 @@ const validateConfirmEmailToken = (req: Request, _res: Response, next: NextFunct
 	// on success replace req.body with validated value and trigger next middleware function
 	req.body = value
 	req.body.accessToken = accessToken
-	console.log(req.body)
 	return next()
 }
 
