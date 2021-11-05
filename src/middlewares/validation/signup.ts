@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express'
 import Joi from 'joi'
 import ErrorResponse from '../../utils/errorResponse'
 
-const validateSignUp = (req: Request, _res: Response, next: NextFunction) => {
+const validateSignUpEndpointBody = (req: Request, _res: Response, next: NextFunction) => {
 	// Create schema object
 	// https://github.com/sideway/joi/blob/v17.4.0/API.md#list-of-errors
 	// https://dev.to/olufemi/validation-joi-brings-you-joy-fof
@@ -65,4 +65,4 @@ const validateSignUp = (req: Request, _res: Response, next: NextFunction) => {
 	return next()
 }
 
-export default validateSignUp
+export default validateSignUpEndpointBody

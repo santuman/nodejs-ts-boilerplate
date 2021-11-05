@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express'
 import Joi from 'joi'
 import ErrorResponse from '../../utils/errorResponse'
 
-const validateConfirmEmailToken = (req: Request, _res: Response, next: NextFunction) => {
+const validateConfirmEmailTokenEndpointBody = (req: Request, _res: Response, next: NextFunction) => {
 	// Check if proper headers are set or not
 	const accessToken = req.headers.authorization?.split(' ')[1]
 	if (!accessToken) {
@@ -38,4 +38,4 @@ const validateConfirmEmailToken = (req: Request, _res: Response, next: NextFunct
 	return next()
 }
 
-export default validateConfirmEmailToken
+export default validateConfirmEmailTokenEndpointBody
