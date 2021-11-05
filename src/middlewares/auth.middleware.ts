@@ -5,7 +5,7 @@ import { IUser } from '../interfaces/IUser'
 import ErrorResponse from '../utils/errorResponse'
 import { asyncHandler } from './async.middleware'
 
-const protect = asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
+const protect = asyncHandler(async (req: Request, _res: Response, next: NextFunction) => {
 	let accessToken
 
 	if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
