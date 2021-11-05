@@ -35,7 +35,7 @@ const confirmEmailToken = asyncHandler(async (req: Request, res: Response) => {
 
 	logger.debug('Calling confirm email token endpoint with body: %o', req.body)
 
-	await authServiceInstance.confirmEmailToken(req.body.emailToken, req.body.accessToken)
+	await authServiceInstance.confirmEmailToken(req.body.emailToken, req.body.userId)
 	return res.status(200).json({
 		success: true,
 		message: 'Email Confirmed',

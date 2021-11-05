@@ -96,12 +96,9 @@ export default class AuthService {
 		}
 	}
 
-	public async confirmEmailToken(emailToken: string, accessToken: string) {
-		const decodedAccessToken = jwt.verify(accessToken, keys.JWT.JWT_SECRET_ACCESS_TOKEN)
-
+	public async confirmEmailToken(emailToken: string, userId: string) {
 		// Check if user exists | user may have deleted their account
-		const user = await this.userModel.findByEmail((decodedAccessToken as IUser).email)
-
+		const user = await this.userModel.findById(userId)
 		if (!user) throw new ErrorResponse(['Bad Request'], 400)
 
 		// Check if email is already confirmed

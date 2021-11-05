@@ -16,6 +16,16 @@ const create = async (userData: UserData) => {
 	return await userMongooseModel.create(userData)
 }
 
+const findById = async (_id: string) => {
+	return await userMongooseModel.findOne(
+		{ _id },
+		{
+			__id: 0,
+			__v: 0,
+		}
+	)
+}
+
 const findByEmail = async (email: string) => {
 	return await userMongooseModel.findOne(
 		{ email },
@@ -46,6 +56,7 @@ const updateEmailToken = async (_id: string) => {
 
 const UserModel = {
 	create,
+	findById,
 	findByEmail,
 	pushTokens,
 	updateEmailToken,
