@@ -5,10 +5,7 @@ import keys from '../config/keys'
 
 @Service()
 export default class NodeMailerService {
-	// emailClient: Transporter<SESTransport.SentMessageInfo>
-	constructor(@Inject('emailClient') private emailClient: Transporter<SESTransport.SentMessageInfo>) {
-		// this.emailClient = emailClient
-	}
+	constructor(@Inject('emailClient') private emailClient: Transporter<SESTransport.SentMessageInfo>) {}
 
 	public async SendWelcomeEmail(email: string) {
 		const data = {
@@ -28,13 +25,13 @@ export default class NodeMailerService {
 		}
 	}
 
-	public async SendConfirmationEmail(email: string, emailToken: string) {
+	public async SendConfirmationEmail(email: string, emailToken: string, userId: string) {
 		const data = {
 			from: `"Account Confirmation" <${keys.EMAIL.EMAIL_FROM}>`,
 			replyTo: keys.EMAIL.EMAIL_REPLY_TO,
 			to: email,
 			subject: 'Confirm Your Email',
-			text: `Click the link to confirm your email: ${keys.FRONTEND_URL}/confirm-email/${emailToken}`,
+			text: `Click the link to confirm your email: ${keys.FRONTEND_URL}/confirm-email/${userId}/${emailToken}`,
 			// html: '<h1>Hi from html</h1>',
 		}
 
@@ -46,13 +43,13 @@ export default class NodeMailerService {
 		}
 	}
 
-	public async SendPasswordResetConfirmationEmail(email: string, passwordResetToken: string) {
+	public async SendPasswordResetConfirmationEmail(email: string, userId: string, passwordResetToken: string) {
 		const data = {
 			from: `"Reset Your Password" <${keys.EMAIL.EMAIL_FROM}>`,
 			replyTo: keys.EMAIL.EMAIL_REPLY_TO,
 			to: email,
 			subject: 'Confirm Your Email',
-			text: `Click the link to confirm your password reset: ${keys.FRONTEND_URL}/confirm-password/${passwordResetToken}`,
+			text: `Click the link to confirm your password reset: ${keys.FRONTEND_URL}/confirm-password/${userId}/${passwordResetToken}`,
 			// html: '<h1>Hi from html</h1>',
 		}
 

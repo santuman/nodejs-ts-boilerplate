@@ -1,15 +1,15 @@
 import { isEmpty } from '../utils/isEmpty'
 
-import dotenv from 'dotenv'
-import path from 'path'
+// import dotenv from 'dotenv'
+// import path from 'path'
 
-const envFound = dotenv.config({
-	path: path.join(path.resolve(), '.env'),
-})
+// const envFound = dotenv.config({
+// 	path: path.join(path.resolve(), '.env'),
+// })
 
-if (envFound.error) {
-	throw new Error("⚠️ Couldn't find .env file ⚠️")
-}
+// if (envFound.error) {
+// 	throw new Error("⚠️ Couldn't find .env file ⚠️")
+// }
 
 const keys = {
 	/**

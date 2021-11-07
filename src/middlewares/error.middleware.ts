@@ -21,7 +21,6 @@ const errorHandler = (err: CustomErrorTypes, _req: Request, res: Response, _next
 	// 	const message = 'Bad Token'
 	// 	error = new ErrorResponse([message], 401)
 	// }
-	console.log(err.name)
 
 	if (new RegExp('token', 'gi').test(err.name)) {
 		const message = 'Bad Token'

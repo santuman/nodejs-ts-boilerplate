@@ -15,7 +15,6 @@ interface UserData extends IUserInputDTO {
 
 interface PasswordResetData {
 	token: string
-	provisionalPassword: string
 	expiry: Date
 }
 
@@ -24,7 +23,7 @@ const create = async (userData: UserData) => {
 }
 
 const findById = async (_id: string) => {
-	return await userMongooseModel.findOne({ _id })
+	return await userMongooseModel.findById(_id)
 }
 
 const findByEmail = async (email: string) => {
@@ -74,7 +73,6 @@ const updatePassword = async (_id: string, provisionalPassword: string) => {
 			$set: {
 				password: provisionalPassword,
 				'security.passwordReset.token': null,
-				'security.passwordReset.provisionalPassword': null,
 				'security.passwordReset.expiry': null,
 			},
 		}

@@ -23,8 +23,8 @@ const signup = asyncHandler(async (req: Request, res: Response) => {
 
 	logger.debug('Calling Sign-Up endpoint with body: %o', req.body)
 
-	const { user, accessToken, refreshToken } = await authServiceInstance.signup(req.body as IUserInputDTO)
-	return res.status(201).json({ success: true, message: 'Sign up successful', user, accessToken, refreshToken })
+	await authServiceInstance.signup(req.body as IUserInputDTO)
+	return res.status(201).json({ success: true, message: 'Sign up successful. Please Confirm Your Email' })
 })
 
 const getAccessToken = asyncHandler(async (req: Request, res: Response) => {
@@ -60,7 +60,7 @@ const resetPassword = asyncHandler(async (req: Request, res: Response) => {
 
 	logger.debug('Calling Reset Password endpoint with body: %o', req.body)
 
-	await authServiceInstance.resetPassword(req.body.userId, req.body.provisionalPassword)
+	await authServiceInstance.resetPassword(req.body.email)
 	return res.status(200).json({
 		success: true,
 		message: 'Password Reset Email Sent',
@@ -73,7 +73,7 @@ const confirmResetPassword = asyncHandler(async (req: Request, res: Response) =>
 
 	logger.debug('Calling Confirm Reset Password endpoint with body: %o', req.body)
 
-	await authServiceInstance.confirmResetPassword(req.body.userId, req.body.passwordResetToken)
+	await authServiceInstance.confirmResetPassword(req.body.userId, req.body.password, req.body.passwordResetToken)
 	return res.status(200).json({
 		success: true,
 		message: 'Password Reset Success',

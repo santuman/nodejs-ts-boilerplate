@@ -31,6 +31,7 @@ const validateSignUpEndpointBody = (req: Request, _res: Response, next: NextFunc
 			'any.required': 'Email is required',
 			'string.min': 'Email should be atleast 4 characters long',
 			'string.max': 'Email should be atmost 25 characters long',
+			'string.email': 'Email must be a valid email',
 		}),
 		password: Joi.string().required().min(6).max(255).label('Password').messages({
 			'string.empty': 'Password should not be empty',

@@ -9,6 +9,10 @@ const validateConfirmEmailTokenEndpointBody = (req: Request, _res: Response, nex
 			'string.empty': 'Bad Request',
 			'any.required': 'Bad Request',
 		}),
+		userId: Joi.string().required().messages({
+			'string.empty': 'Bad Request',
+			'any.required': 'Bad Request',
+		}),
 	})
 
 	// Schema options

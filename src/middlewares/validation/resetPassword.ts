@@ -5,11 +5,12 @@ import ErrorResponse from '../../utils/errorResponse'
 const validateResetPasswordEndpointBody = (req: Request, _res: Response, next: NextFunction) => {
 	// Create schema object
 	const schema = Joi.object({
-		provisionalPassword: Joi.string().required().min(6).max(255).messages({
-			'string.empty': 'provisionalPassword should not be empty',
-			'any.required': 'provisionalPassword is required',
-			'string.min': 'provisionalPassword should be atleast 6 characters long',
-			'string.max': 'provisionalPassword should be atmost 255 characters long',
+		email: Joi.string().required().trim().min(4).max(25).email().label('Email').messages({
+			'string.empty': 'Email should not be empty',
+			'any.required': 'Email is required',
+			'string.min': 'Email should be atleast 4 characters long',
+			'string.max': 'Email should be atmost 25 characters long',
+			'string.email': 'Email must be a valid email',
 		}),
 	})
 

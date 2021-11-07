@@ -35,40 +35,13 @@ export default class AuthService {
 			},
 			password: hashedPassword,
 		})
-		console.log({ userRecord })
 
 		if (!userRecord) {
 			throw new Error('User cannot be created')
 		}
 
-		this.logger.silly('Generating ACCESS JWT Token')
-		const accessToken = this.generateToken({
-			type: 'ACCESS',
-			user: userRecord,
-		})
-
-		this.logger.silly('Generating REFRESH JWT Token')
-		const refreshToken = this.generateToken({
-			type: 'REFRESH',
-			user: userRecord,
-		})
-
-		this.logger.silly(`Updating refreshToken of user with id ${userRecord._id}`)
-		const refreshUpdateSuccess = await this.addRefreshToken(userRecord, refreshToken)
-
-		if (!refreshUpdateSuccess) {
-			throw new ErrorResponse(['Server Error'], 500)
-		}
-
 		this.logger.silly('Sending confirmation email')
-		await this.mailer.SendConfirmationEmail(userRecord.email, userRecord.emailToken)
-
-		const user = userRecord.toObject() // does necessary transformations / ref: user.mongo.ts
-		return {
-			user,
-			accessToken,
-			refreshToken,
-		}
+		await this.mailer.SendConfirmationEmail(userRecord.email, userRecord.emailToken, userRecord._id)
 	}
 
 	public async login(email: string, password: string) {
@@ -76,6 +49,9 @@ export default class AuthService {
 
 		// Check if the email is correct / user exists or not
 		if (!userRecord) throw new ErrorResponse(['User not registered'], 400)
+
+		// Check if email is verified or not
+		if (!userRecord.emailConfirmed) throw new ErrorResponse(['Please Confirm Your Email'], 401)
 
 		// Using verify from argon2 to prevent 'timing based' attacks
 		this.logger.silly('Checking password')
@@ -139,15 +115,10 @@ export default class AuthService {
 		await this.userModel.updateEmailToken(user._id)
 	}
 
-	public async resetPassword(userId: string, provisionalPassword: string) {
+	public async resetPassword(email: string) {
 		// Check if user exists | user may have deleted their account
-		const user = await this.userModel.findById(userId)
+		const user = await this.userModel.findByEmail(email)
 		if (!user) throw new ErrorResponse(['Bad Request'], 401)
-
-		const salt = randomBytes(20)
-
-		this.logger.silly('Hashing password')
-		const hashedPassword = await argon2.hash(provisionalPassword, { salt })
 
 		// Generate a password reset token
 		this.logger.silly('Generating password reset token')
@@ -157,18 +128,17 @@ export default class AuthService {
 		// Update user with password token
 		await this.userModel.updatePasswordReset(user._id, {
 			token: passwordResetToken,
-			provisionalPassword: hashedPassword,
 			expiry: expiresIn,
 		})
 
-		const res = await this.mailer.SendPasswordResetConfirmationEmail(user.email, passwordResetToken)
+		const res = await this.mailer.SendPasswordResetConfirmationEmail(user.email, user._id, passwordResetToken)
 
 		if (res.status !== 'ok') {
 			throw new ErrorResponse(['Server Error'], 500)
 		}
 	}
 
-	public async confirmResetPassword(userId: string, passwordResetToken: string) {
+	public async confirmResetPassword(userId: string, password: string, passwordResetToken: string) {
 		const user = (await this.userModel.findById(userId)) as IUser
 
 		// Check if supplied passwordResetToken matches with the user's stored one
@@ -181,7 +151,12 @@ export default class AuthService {
 			throw new ErrorResponse(['Password Reset Token Expired'], 401)
 		}
 
-		await this.userModel.updatePassword(user._id, user.security.passwordReset.provisionalPassword)
+		const salt = randomBytes(20)
+
+		this.logger.silly('Hashing password')
+		const hashedPassword = await argon2.hash(password, { salt })
+
+		await this.userModel.updatePassword(user._id, hashedPassword)
 	}
 
 	private async addRefreshToken(user: IUser, refreshToken: string): Promise<boolean> {
