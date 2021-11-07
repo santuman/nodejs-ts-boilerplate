@@ -12,35 +12,39 @@ interface UserData extends IUserInputDTO {
 	}
 	password: string
 }
+
+interface PasswordResetData {
+	token: string
+	provisionalPassword: string
+	expiry: Date
+}
+
 const create = async (userData: UserData) => {
 	return await userMongooseModel.create(userData)
 }
 
 const findById = async (_id: string) => {
-	return await userMongooseModel.findOne(
-		{ _id },
-		{
-			__id: 0,
-			__v: 0,
-		}
-	)
+	return await userMongooseModel.findOne({ _id })
 }
 
 const findByEmail = async (email: string) => {
-	return await userMongooseModel.findOne(
-		{ email },
-		{
-			__id: 0,
-			__v: 0,
-		}
-	)
+	return await userMongooseModel.findOne({ email })
 }
 
-const pushTokens = async (_id: string, data: { token: string; createdAt: Date }) => {
+const pushRefreshTokens = async (_id: string, data: { token: string; createdAt: Date }) => {
 	return await userMongooseModel.updateOne(
 		{ _id },
 		{
 			$push: { 'security.tokens': { refreshToken: data.token, createdAt: data.createdAt } },
+		}
+	)
+}
+
+const removeRefreshToken = async (userId: string, refreshTokenId: string) => {
+	return await userMongooseModel.updateOne(
+		{ _id: userId },
+		{
+			$pull: { 'security.tokens': { _id: refreshTokenId } },
 		}
 	)
 }
@@ -54,12 +58,52 @@ const updateEmailToken = async (_id: string) => {
 	)
 }
 
+const updatePasswordReset = async (_id: string, passwordResetData: PasswordResetData) => {
+	await userMongooseModel.findOneAndUpdate(
+		{ _id },
+		{
+			$set: { 'security.passwordReset': passwordResetData },
+		}
+	)
+}
+
+const updatePassword = async (_id: string, provisionalPassword: string) => {
+	await userMongooseModel.updateOne(
+		{ _id },
+		{
+			$set: {
+				password: provisionalPassword,
+				'security.passwordReset.token': null,
+				'security.passwordReset.provisionalPassword': null,
+				'security.passwordReset.expiry': null,
+			},
+		}
+	)
+}
+
+const clearPasswordReset = async (userId: string) => {
+	await userMongooseModel.updateOne(
+		{ _id: userId },
+		{
+			$set: {
+				'security.passwordReset.token': null,
+				'security.passwordReset.provisionalPassword': null,
+				'security.passwordReset.expiry': null,
+			},
+		}
+	)
+}
+
 const UserModel = {
 	create,
 	findById,
 	findByEmail,
-	pushTokens,
+	pushRefreshTokens,
+	removeRefreshToken,
 	updateEmailToken,
+	updatePasswordReset,
+	updatePassword,
+	clearPasswordReset,
 }
 
 // Container.set('userModel', UserModel)

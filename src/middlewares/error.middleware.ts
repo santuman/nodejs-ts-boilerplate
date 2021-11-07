@@ -17,7 +17,13 @@ const errorHandler = (err: CustomErrorTypes, _req: Request, res: Response, _next
 		LoggerInstance.error('Error Middleware Stack: %o', err.stack)
 	}
 
-	if (err.name === 'JsonWebTokenError') {
+	// if (err.name === 'JsonWebTokenError') {
+	// 	const message = 'Bad Token'
+	// 	error = new ErrorResponse([message], 401)
+	// }
+	console.log(err.name)
+
+	if (new RegExp('token', 'gi').test(err.name)) {
 		const message = 'Bad Token'
 		error = new ErrorResponse([message], 401)
 	}
@@ -49,7 +55,7 @@ const errorHandler = (err: CustomErrorTypes, _req: Request, res: Response, _next
 
 	res.status(error.statusCode || 500).json({
 		success: false,
-		messages: error.messages || 'Server Error',
+		messages: error.messages || ['Server Error'],
 	})
 }
 export default errorHandler

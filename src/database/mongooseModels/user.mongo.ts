@@ -30,7 +30,6 @@ const userSchema = new mongoose.Schema(
 			required: true,
 			min: 6,
 			max: 255,
-			select: false,
 		},
 		role: {
 			type: String,
@@ -75,6 +74,16 @@ const userSchema = new mongoose.Schema(
 	},
 	{
 		timestamps: true,
+		toObject: {
+			transform: function (_doc, ret) {
+				Reflect.deleteProperty(ret, 'password')
+				Reflect.deleteProperty(ret, 'security')
+				Reflect.deleteProperty(ret, 'emailToken')
+				Reflect.deleteProperty(ret, 'createdAt')
+				Reflect.deleteProperty(ret, 'updatedAt')
+				Reflect.deleteProperty(ret, '__v')
+			},
+		},
 	}
 )
 

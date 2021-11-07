@@ -46,6 +46,24 @@ export default class NodeMailerService {
 		}
 	}
 
+	public async SendPasswordResetConfirmationEmail(email: string, passwordResetToken: string) {
+		const data = {
+			from: `"Reset Your Password" <${keys.EMAIL.EMAIL_FROM}>`,
+			replyTo: keys.EMAIL.EMAIL_REPLY_TO,
+			to: email,
+			subject: 'Confirm Your Email',
+			text: `Click the link to confirm your password reset: ${keys.FRONTEND_URL}/confirm-password/${passwordResetToken}`,
+			// html: '<h1>Hi from html</h1>',
+		}
+
+		try {
+			await this.emailClient.sendMail(data)
+			return { delivered: 1, status: 'ok' }
+		} catch (error) {
+			return { delivered: 0, status: 'error' }
+		}
+	}
+
 	public async SendReportEmail(email: string) {
 		const data = {
 			from: `"SERVER REPORT" ${keys.EMAIL.EMAIL_FROM}`,
