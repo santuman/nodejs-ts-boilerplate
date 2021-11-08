@@ -38,7 +38,7 @@ services:
 
   db:
     image: mongo:4.4.6
-    restart: unless-stopped
+    restart: always
     container_name: db
     ports:
       - 27020:27017
