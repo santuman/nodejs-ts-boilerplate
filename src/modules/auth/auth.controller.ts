@@ -5,6 +5,11 @@ import { LoggerInstanceType } from '../../loaders/logger'
 import { asyncHandler } from '../../middlewares/async.middleware'
 import AuthService from './auth.service'
 
+/**
+ * @desc Login user
+ * @route POST /api/auth/login
+ * @access Public
+ */
 const login = asyncHandler(async (req: Request, res: Response) => {
 	const authServiceInstance = Container.get(AuthService)
 	const logger: LoggerInstanceType = Container.get('logger')
@@ -17,6 +22,11 @@ const login = asyncHandler(async (req: Request, res: Response) => {
 	return res.status(200).json({ success: true, message: 'Login successful', user, accessToken, refreshToken })
 })
 
+/**
+ * @desc Register user
+ * @route POST /api/auth/signup
+ * @access Public
+ */
 const signup = asyncHandler(async (req: Request, res: Response) => {
 	const authServiceInstance = Container.get(AuthService)
 	const logger: LoggerInstanceType = Container.get('logger')
@@ -27,6 +37,11 @@ const signup = asyncHandler(async (req: Request, res: Response) => {
 	return res.status(201).json({ success: true, message: 'Sign up successful. Please Confirm Your Email' })
 })
 
+/**
+ * @desc Get New Access token
+ * @route POST /api/auth/token
+ * @access Public
+ */
 const getAccessToken = asyncHandler(async (req: Request, res: Response) => {
 	const authServiceInstance = Container.get(AuthService)
 	const logger: LoggerInstanceType = Container.get('logger')
@@ -41,6 +56,11 @@ const getAccessToken = asyncHandler(async (req: Request, res: Response) => {
 	})
 })
 
+/**
+ * @desc Confirm Email Address
+ * @route POST /api/auth/confirmEmailToken
+ * @access Public
+ */
 const confirmEmailToken = asyncHandler(async (req: Request, res: Response) => {
 	const authServiceInstance = Container.get(AuthService)
 	const logger: LoggerInstanceType = Container.get('logger')
@@ -54,6 +74,11 @@ const confirmEmailToken = asyncHandler(async (req: Request, res: Response) => {
 	})
 })
 
+/**
+ * @desc Password Reset
+ * @route POST /api/auth/resetPassword
+ * @access Public
+ */
 const resetPassword = asyncHandler(async (req: Request, res: Response) => {
 	const authServiceInstance = Container.get(AuthService)
 	const logger: LoggerInstanceType = Container.get('logger')
@@ -67,6 +92,11 @@ const resetPassword = asyncHandler(async (req: Request, res: Response) => {
 	})
 })
 
+/**
+ * @desc  Confirm New Password
+ * @route POST /api/auth/confirmResetPassword
+ * @access Public
+ */
 const confirmResetPassword = asyncHandler(async (req: Request, res: Response) => {
 	const authServiceInstance = Container.get(AuthService)
 	const logger: LoggerInstanceType = Container.get('logger')
