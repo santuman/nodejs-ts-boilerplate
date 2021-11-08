@@ -1,6 +1,6 @@
 import Agenda from 'agenda'
 
-import keys from '../config/keys'
+import keys from 'config/keys'
 
 interface AgendaFactoryParams {
 	mongoURI: string

@@ -1,5 +1,5 @@
-import userMongooseModel from '../database/mongooseModels/user.mongo'
-import { IUserInputDTO } from '../interfaces/IUser'
+import userMongooseModel from 'database/mongooseModels/user.mongo'
+import { IUserInputDTO } from 'interfaces/IUser'
 
 interface UserData extends IUserInputDTO {
 	emailToken: string

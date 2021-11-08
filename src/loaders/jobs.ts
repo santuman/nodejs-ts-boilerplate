@@ -1,6 +1,6 @@
 import Agenda from 'agenda'
-import keys from '../config/keys'
-import EmailSequenceJob from '../jobs/reportEmailSequence'
+import keys from 'config/keys'
+import EmailSequenceJob from 'jobs/reportEmailSequence'
 
 export default async ({ agenda }: { agenda: Agenda }) => {
 	agenda.define(

@@ -1,7 +1,7 @@
 import { Job } from 'agenda'
 import Container from 'typedi'
 import { Logger } from 'winston'
-import NodeMailerService from '../services/mailer'
+import NodeMailerService from 'services/mailer'
 
 export default class EmailSequenceJob {
 	public async handler(job: Job, done: (_arg0?: unknown) => void): Promise<void> {

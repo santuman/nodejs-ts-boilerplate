@@ -1,8 +1,8 @@
 import express, { Response } from 'express'
-import keys from './config/keys'
+import keys from 'config/keys'
 
-import errorHandler from './middlewares/error.middleware'
-import authRouter from './modules/auth/auth.routes'
+import errorHandler from 'middlewares/error.middleware'
+import authRouter from 'modules/auth/auth.routes'
 
 const expressApplication = (): Express.Application => {
 	const app = express()

@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
 import Joi from 'joi'
-import ErrorResponse from '../../utils/errorResponse'
+import ErrorResponse from 'utils/errorResponse'
 
 const validateSignUpEndpointBody = (req: Request, _res: Response, next: NextFunction) => {
 	// Create schema object

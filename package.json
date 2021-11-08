@@ -8,7 +8,7 @@
     "clean": "rimraf build",
     "start": "node ./build/src/server.js",
     "prod": "npm-run-all clean build start",
-    "dev": "ts-node-dev --respawn --transpile-only ./src/server.ts",
+    "dev": "NODE_PATH=./src ts-node-dev --respawn --transpile-only ./src/server.ts",
     "prepare": "husky install",
     "type-check": "tsc --project tsconfig.json --pretty --noEmit",
     "lint": "eslint -c .eslintrc.json --ext js,ts --fix --cache"

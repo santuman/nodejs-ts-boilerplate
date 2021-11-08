@@ -1,9 +1,9 @@
 import { Request, Response, NextFunction } from 'express'
 import { Error as MongooseError } from 'mongoose'
 import { MongoServerError } from 'mongodb'
-import keys from '../config/keys'
-import LoggerInstance from '../loaders/logger'
-import ErrorResponse from '../utils/errorResponse'
+import keys from 'config/keys'
+import LoggerInstance from 'loaders/logger'
+import ErrorResponse from 'utils/errorResponse'
 
 type CustomErrorTypes = ErrorResponse | MongooseError.CastError | MongooseError.ValidationError
 

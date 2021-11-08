@@ -1,8 +1,8 @@
 import { SESClient, SendRawEmailCommand } from '@aws-sdk/client-ses'
 import nodemailer from 'nodemailer'
 import { Container } from 'typedi'
-import keys from '../config/keys'
-import { Models } from '../models'
+import keys from 'config/keys'
+import { Models } from 'models'
 import agendaFactory from './agenda'
 import LoggerInstance from './logger'
 

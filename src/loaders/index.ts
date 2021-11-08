@@ -1,5 +1,5 @@
-import keys from '../config/keys'
-import models from '../models'
+import keys from 'config/keys'
+import models from 'models'
 import dependencyInjectorLoader from './dependencyInjector'
 import LoggerInstance from './logger'
 import { connectMongoDB } from './mongoConnection'
