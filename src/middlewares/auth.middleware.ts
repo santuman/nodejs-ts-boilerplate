@@ -1,5 +1,6 @@
-import { Request, Response, NextFunction } from 'express'
 import jwt from 'jsonwebtoken'
+import { Request, Response, NextFunction } from 'express'
+
 import keys from 'config/keys'
 import { IUser } from 'interfaces/IUser'
 import ErrorResponse from 'utils/errorResponse'

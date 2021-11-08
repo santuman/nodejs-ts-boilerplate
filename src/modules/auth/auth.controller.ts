@@ -1,9 +1,10 @@
-import { Request, Response } from 'express'
 import Container from 'typedi'
+import { Request, Response } from 'express'
+
+import AuthService from './auth.service'
 import { IUserInputDTO } from 'interfaces/IUser'
 import { LoggerInstanceType } from 'loaders/logger'
 import { asyncHandler } from 'middlewares/async.middleware'
-import AuthService from './auth.service'
 
 /**
  * @desc Login user

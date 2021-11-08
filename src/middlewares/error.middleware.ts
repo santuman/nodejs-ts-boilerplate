@@ -1,6 +1,7 @@
-import { Request, Response, NextFunction } from 'express'
-import { Error as MongooseError } from 'mongoose'
 import { MongoServerError } from 'mongodb'
+import { Error as MongooseError } from 'mongoose'
+import { Request, Response, NextFunction } from 'express'
+
 import keys from 'config/keys'
 import LoggerInstance from 'loaders/logger'
 import ErrorResponse from 'utils/errorResponse'

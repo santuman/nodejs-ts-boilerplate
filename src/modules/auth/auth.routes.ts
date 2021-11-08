@@ -1,11 +1,14 @@
 import { Router } from 'express'
+import {
+	validateConfirmEmailTokenEndpointBody,
+	validateConfirmResetPasswordEndpointBody,
+	validateLoginEndpointBody,
+	validateResetPasswordEndpointBody,
+	validateSignUpEndpointBody,
+	validateTokenEndpointBody,
+} from 'middlewares/validation'
 // import protect from 'middlewares/auth.middleware'
-import validateConfirmEmailTokenEndpointBody from 'middlewares/validation/confirmEmailToken'
-import validateLoginEndpointBody from 'middlewares/validation/login'
-import validateResetPasswordEndpointBody from 'middlewares/validation/resetPassword'
-import validateConfirmResetPasswordEndpointBody from 'middlewares/validation/confirmResetPassword'
-import validateSignUpEndpointBody from 'middlewares/validation/signup'
-import validateTokenEndpointBody from 'middlewares/validation/token'
+
 import authController from './auth.controller'
 
 const authRouter = Router()

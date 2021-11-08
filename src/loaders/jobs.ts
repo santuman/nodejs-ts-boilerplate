@@ -1,4 +1,5 @@
 import Agenda from 'agenda'
+
 import keys from 'config/keys'
 import EmailSequenceJob from 'jobs/reportEmailSequence'
 

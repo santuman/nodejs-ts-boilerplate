@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from 'express'
+
 import { AsyncFunction } from 'interfaces/AsyncFunction'
 
 export const asyncHandler =

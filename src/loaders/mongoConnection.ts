@@ -1,4 +1,5 @@
 import mongoose from 'mongoose'
+
 import Logger from './logger'
 
 mongoose.connection.once('connected', function (this: mongoose.Connection) {

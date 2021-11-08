@@ -1,5 +1,6 @@
-import keys from 'config/keys'
 import winston from 'winston'
+
+import keys from 'config/keys'
 
 const transports = []
 

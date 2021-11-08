@@ -1,5 +1,6 @@
-import { Request, Response, NextFunction } from 'express'
 import Joi from 'joi'
+import { Request, Response, NextFunction } from 'express'
+
 import ErrorResponse from 'utils/errorResponse'
 
 const validateConfirmResetPasswordEndpointBody = (req: Request, _res: Response, next: NextFunction) => {

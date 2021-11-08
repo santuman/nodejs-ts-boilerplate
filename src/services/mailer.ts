@@ -1,6 +1,7 @@
+import { Service, Inject } from 'typedi'
 import { Transporter } from 'nodemailer'
 import SESTransport from 'nodemailer/lib/ses-transport'
-import { Service, Inject } from 'typedi'
+
 import keys from 'config/keys'
 
 @Service()

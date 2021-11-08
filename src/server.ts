@@ -1,11 +1,11 @@
 import 'reflect-metadata' // We need this in order to use @Decorators
 import http from 'http'
 
+import loader from 'loaders'
 import keys from 'config/keys'
+import Logger from 'loaders/logger'
 import expressApplication from './app'
 import { disconnectMongoDB } from 'loaders/mongoConnection'
-import Logger from 'loaders/logger'
-import loader from 'loaders'
 
 const startServer = async () => {
 	try {

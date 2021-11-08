@@ -1,15 +1,16 @@
-import { Inject, Service } from 'typedi'
-import { randomBytes } from 'crypto'
 import argon2 from 'argon2'
 import jwt from 'jsonwebtoken'
-import { IUser, IUserInputDTO } from 'interfaces/IUser'
-import { LoggerInstanceType } from 'loaders/logger'
-import { UserModelType } from 'models/user.model'
-import NodeMailerService from 'services/mailer'
 import { v4 as uuidv4 } from 'uuid'
+import { randomBytes } from 'crypto'
+import { Inject, Service } from 'typedi'
+
 import keys from 'config/keys'
-import { GenerateTokenParams } from 'interfaces/GenerateTokenParams'
 import ErrorResponse from 'utils/errorResponse'
+import NodeMailerService from 'services/mailer'
+import { UserModelType } from 'models/user.model'
+import { LoggerInstanceType } from 'loaders/logger'
+import { IUser, IUserInputDTO } from 'interfaces/IUser'
+import { GenerateTokenParams } from 'interfaces/GenerateTokenParams'
 
 @Service()
 export default class AuthService {
