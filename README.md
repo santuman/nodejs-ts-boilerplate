@@ -4,6 +4,8 @@ Node.js TS Boilerplate is a complete boilerplate for building nodejs backend.
 
 ## Setup
 
+### **If you want to use dev container**
+
 All configuration related to the development container is in the `.devcontainer` directory.
 
 - `devcontainer.json`: Configuration settings for the development container
@@ -62,6 +64,28 @@ All configuration related to the development container is in the `.devcontainer`
 
 8. Application will run on port `3000`.
 
+## **If you don't want to run inside dev container**
+
+1. Install dependencies via `npm install`
+
+2. Make sure `dotenv` package is installed and open `config/keys.ts` and uncomment following line:
+
+    ```typescript
+    // import dotenv from 'dotenv'
+    // import path from 'path'
+
+    // const envFound = dotenv.config({
+    //  path: path.join(path.resolve(), '.env'),
+    // })
+
+    // if (envFound.error) {
+    //  throw new Error("⚠️ Couldn't find .env file ⚠️")
+    // }
+
+    ```
+
+3. You can start your application `npm run dev`.
+
 ### Custom Environment variables
 
 You can change environment variables according to your needs from `.devcontainer/.env` file. You can use .env.example as reference
@@ -72,7 +96,10 @@ PORT=3000
 ENV=development
 
 # MONGODB
-MONGO_URI=mongodb://db:27017/dev-nodejs-ts-boilerplate
+MONGO_URI=mongodb://db:27017/dev-nodejs-ts-boilerplate # for dev container
+#or,
+MONGO_URI=mongodb://localhost:27017/dev-nodejs-ts-boilerplate # for not dev container
+
 
 # AGENDA
 AGENDA_DB_COLLECTION=test-db-name-agenda-job-collection
